@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+/*
 interface Joke {
   id: number;
   type: string;
@@ -49,5 +49,53 @@ function App() {
     );
   }
 }
+*/
+interface picture{
+  message: string;
+  status: string;
+}
+
+function App(){
+  const [pic, setPic]=useState<picture>();
+  /*const handleGetPicture = async () => {
+    const response = await fetch(
+      "https://dog.ceo/api/breeds/image/random"
+    );
+    const jsonBody: picture[] = await response.json();
+    setPic(jsonBody[0]);
+    console.log(pic)
+  }; */
+   const handleGetPicture = () => {
+     fetch("https://dog.ceo/api/breeds/image/random")
+       .then((response) => response.json())
+       .then((jsonBody: picture[]) => setPic(jsonBody[0]));
+       console.log(pic);
+   }; 
+
+  if (pic) {
+    return (
+      <div>
+        <h1>Dog Picture app</h1>
+        
+          <img id={pic.message} alt =""/>
+          <p>{pic.status}</p>
+    
+    
+        <button onClick={handleGetPicture}>Get another picture</button>
+      </div>
+    );
+  } else {
+  return (
+    <div>
+      <h1>Dog Pic App</h1>
+      <p>
+        Click the button to trigger a <code>fetch</code> that gets a random
+        dog pictur from an API!
+      </p>
+      <button onClick={handleGetPicture}>Get Picture</button>
+    </div>
+  );
+  }
+} 
 
 export default App;
