@@ -68,7 +68,7 @@ function App(){
    const handleGetPicture = () => {
      fetch("https://dog.ceo/api/breeds/image/random")
        .then((response) => response.json())
-       .then((jsonBody: picture[]) => setPic(jsonBody[0]));
+       .then((jsonBody: picture) => setPic(jsonBody));
        console.log(pic);
    }; 
 
@@ -77,7 +77,7 @@ function App(){
       <div>
         <h1>Dog Picture app</h1>
         
-          <img id={pic.message} alt =""/>
+          <img src={pic.message} alt =""/>
           <p>{pic.status}</p>
     
     
